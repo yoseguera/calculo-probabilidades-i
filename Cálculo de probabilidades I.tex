@@ -1,338 +1,491 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-\documentclass[
-]{article}
-\usepackage{xcolor}
-\usepackage{amsmath,amssymb}
-\newtheorem{definition}{Definición}
-\newtheorem{proposition}{Proposición}
-\newtheorem{theorem}{Teorema}
-\newtheorem{corollary}{Corolario}
-\newtheorem{lemma}{Lema}
-\renewcommand{\vec}[1]{\overrightarrow{#1}}
-\newcommand{\R}{\mathbb{R}}
+\documentclass[11pt,a4paper,twoside]{memoir}
+
+% ---------------------------------------------------------
+% PAQUETES BÁSICOS
+% ---------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Puedes cambiar por Garamond, Libertinus, etc.
+\usepackage[spanish]{babel}
+\usepackage{microtype} % Mejora tipográfica
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+
+% ---------------------------------------------------------
+% CONFIGURACIÓN DE PÁGINA Y MÁRGENES
+% ---------------------------------------------------------
+\setlrmarginsandblock{3.5cm}{3.5cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+
+% ---------------------------------------------------------
+% ESTILO DE CAPÍTULOS (ejemplo clásico)
+% ---------------------------------------------------------
+\chapterstyle{hangnum}
+
+% Otros estilos disponibles:
+% demo, default, section, companion, article, bianchi, veelo, ell, dash, madsen, pedersen, chappell, bringhurst...
+
+% ---------------------------------------------------------
+% CABECERAS Y PIES DE PÁGINA
+% ---------------------------------------------------------
+\makepagestyle{mystyle}
+\makeevenhead{mystyle}{}{}{\thepage}
+\makeoddhead{mystyle}{\thepage}{}{}
+\makeevenfoot{mystyle}{}{}{}
+\makeoddfoot{mystyle}{}{}{}
+\pagestyle{mystyle}
+
+% Símbolos mátemáticos
+\newcommand{\e}{\operatorname{e}}
+\newcommand{\ii}{\operatorname{i}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\K}{\mathbb{K}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\emph}[1]{\textbf{#1}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+%\renewcommand{\mod}{aaa}
+\newcommand{\Mod}[1]{\ \operatorname{MOD}\ #1}
+\newcommand{\mcd}[1]{\operatorname{mcd}(#1)}
+\newcommand{\mcm}[1]{\operatorname{mcm}(#1)}
+\newcommand{\card}[1]{\operatorname{card} #1}
+\newcommand{\anipol}[2]{#1[#2_1 \cdots #2_n]}
+\newcommand{\anipolg}{\anipol{A}{X}}
+\newcommand{\anipolgk}{\anipol{K}{X}}
+\newcommand{\polinomio}[3]{\sum_{#2} #1_{#2} #3_1^{#2_1} \cdots #3_n^{#2_n}}
+\newcommand{\polinomiog}{\polinomio{a}{v}{X}}
+\newcommand{\diag}{\operatorname{diag}}
+%\newcommand{\rg}[1]{\operatorname{rg}\left(#1\right)}
+\newcommand{\rg}[1]{\operatorname{rg}\left(#1\right)}
+\DeclareMathOperator{\adj}{Adj}
+\let\ker\relax
+\DeclareMathOperator{\ker}{ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\SP}{sp}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\GrTr}{gr.trans.}
+\newcommand{\grado}{\partial}
+\newcommand{\fix}{\operatorname{Fix}}
+\newcommand{\fixm}{\operatorname{Fix}^-}
+\newcommand{\id}{\operatorname{Id}}
+\newcommand{\Grad}{\operatorname{grad}}
+\newcommand{\Gen}[1]{\langle#1\rangle}
+\newcommand{\biy}{\operatorname{Biy}}
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\cont}{\mathbf{c}}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
 \newcommand{\prodes}[2]{\langle #1,#2 \rangle}
 \newcommand{\norma}[1]{|| #1 ||}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\usepackage{iftex}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage{bookmark}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
-\hypersetup{
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
-\author{}
-\date{}
+\newtheorem{definition}{Definici\'{o}n}[chapter]
+\newtheorem{theorem}[definition]{Teorema}
+\newtheorem{proposition}[definition]{Proposici\'{o}n}
+\newtheorem{corollary}[definition]{Corolario}
+\newtheorem{lemma}[definition]{Lema}
+\newtheorem{construccion}[definition]{Construcci\'{o}n}
+\newtheorem{algoritmo}[definition]{Algoritmo}
+
+% ---------------------------------------------------------
+% INICIO DEL DOCUMENTO
+% ---------------------------------------------------------
+\title{Cálculo de probabilidades I}
+\date{\today}
 
 \begin{document}
 
-\subsection{El modelo matemático de la
-probabilidad}\label{el-modelo-matemuxe1tico-de-la-probabilidad}
+\maketitle
 
-\subsubsection{Espacio muestral y
-sucesos}\label{espacio-muestral-y-sucesos}
+% Dedicatoria opcional
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  \emph{A quien corresponda.}
+\end{center}
+\cleardoublepage
 
-Los resultados posibles constituyen un conjunto finito que se denomina
-\textbf{espacio muestral} del fenómeno aleatorio en cuestos y se designa
+
+\tableofcontents
+
+\subsection{El modelo matemático de la probabilidad}
+\label{el-modelo-matemuxe1tico-de-la-probabilidad}
+
+\subsubsection{Espacio muestral y sucesos}
+\label{espacio-muestral-y-sucesos}
+
+Los resultados posibles constituyen un conjunto finito que se denomina \textbf{espacio muestral} del fenómeno aleatorio en cuestos y se designa
 genéricamente por \(\Omega\).
 
-Los subconjuntos del espacio muestral \(\Omega\) se denominan
-\textbf{sucesos} o \textbf{acontecimientos}, a los que puede dar lugar
-el azar en el experimento considerado. Los subconjuntos con un único
-elemento, representan uno sólo de los resultados posibles del fenómeno,
-se llaman \textbf{sucesos simples}, mientras que los \textbf{sucesos
-compuestos} se identifican con los subconjuntos que tienen más de un
+Los subconjuntos del espacio muestral \(\Omega\) se denominan \textbf{sucesos} o \textbf{acontecimientos}, a los que puede dar lugar
+el azar en el experimento considerado. Los subconjuntos con un único elemento, representan uno sólo de los resultados posibles del fenómeno,
+se llaman \textbf{sucesos simples}, mientras que los \textbf{sucesos compuestos} se identifican con los subconjuntos que tienen más de un
 elemento y son, por tanto, uniones de sucesos simples.
 
-El espacio muestral \(\Omega\) es el \textbf{suceso seguro}, y el
-subconjunto \(\emptyset\) es el \textbf{suceso imposible}.
+El espacio muestral \(\Omega\) es el \textbf{suceso seguro}, y el subconjunto \(\emptyset\) es el \textbf{suceso imposible}.
 
-Si la intersección de dos sucesos \(A\) y \(B\) es vacía
-\(A \cap B = \emptyset\), se dice que \(A\) y \(B\) son
-\textbf{incompatibles}*.
+Si la intersección de dos sucesos \(A\) y \(B\) es vacía \(A \cap B = \emptyset\), se dice que \(A\) y \(B\) son
+\textbf{incompatibles}.
 
 El \textbf{suceso contrario} es \(A^c = \Omega - A\).
 
-\subsubsection{El concepto de
-probabilidad}\label{el-concepto-de-probabilidad}
+\subsubsection{El concepto de probabilidad}
+\label{el-concepto-de-probabilidad}
 
-Sobre un espacio muestral finito \(\Omega\), una probabilidad es una
-aplicación \[
-P : P(\Omega) \longrightarrow [0,1]
-\] que verifique: - \textbf{Aditividad}: Si
-\(A, B \subset \Omega, A \cap B = \emptyset\), entonces
-\(P(A \cup B) = P(A) + P(B)\). - \textbf{Normalización}:
-\(P(\Omega) = 1\). El espacio de probabilidad finito es el par
-\((\Omega,P)\). \#\#\# Primeras propiedades de la probabilidad * Si
-\(A \subset B \subset \Omega\), entonces \(P(A) \leq P(B)\). *
-\(P(B) = P(A) + P(B \cap A^c)\) * Si \(A \subset B \subset \Omega\),
-entonces \(P(B - A) = P(B)- P(A)\). * Para cualquier
-\(A \subset \Omega\), \(P(A^c) = 1 - P(A)\). * \(P(\emptyset) = 0\) *
-\(P(B) = P(B \cap A) + P(B - A)\) *
-\(P(A \cup B) = P(A) + P(B) + P(A \cap B)\). * Si
-\(A_1, A_2,\ldots,A_n\) son sucesos disjuntos dos a dos, es decir que
-verifiquen \(A_i \cap A_j = \emptyset\) para \(i \neq j\) se cumple *
-\(P(A_1 \cup A_2 \cup \ldots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n)\)
-* Si \(\Omega = \{\omega_1, \omega_2, \ldots, \omega_n \}\) es el
-espacio muestral de probabilidad finito \((\Omega, P)\) y
-\(A = \{\omega_1, \omega_2, \ldots, \omega_k\}\) es un suceso se cumple
-*
-\(P(A) = P(\{\omega_1\}) + P(\{\omega_2\}) + \cdots + P(\{\omega_k\})\)
-\#\# Asignación de probabilidades \#\#\# Regla de Laplace La
-probabilidad de un suceso \(A\) relativo a un fenómeno aleatorio es \[
-P(A) = \frac{\text{número de casos favorables de A}}{\text{número de casos posibles}}
-\] supuesto que todos los casos posibles son igualmente probables. \#\#
-Las formulas de inclusión y exclusión \#\#\# Probabilidad de una unión
-de sucesos Si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera de un
-espacio de probabilidad, se cumple \[
-P(A_1 \cup A_2 \cup \cdots \cup A_n) = S_1 - S_2 + S_3- \cdots + (-1)^{n-2}S_{n-1}+(-1)^{n-1}S_n
-\] donde \[
-S_k = \sum_{1 \leq i_1 < i_2 < \cdots < i_k < n}P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k})
-\] \#\#\# Probabilidad de que se realicen m sucesos En un espacio de
-probabilidad, si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera, la
-probabilidad \(P_{[m]}\) de que ocurran exactamente \(m\) de ellos, es
+Sobre un espacio muestral finito \(\Omega\), una probabilidad es una aplicación 
 \[
-P_{[m]} = S_m - \binom{m+1}{m}S_{m+1} +\binom{m+2}{m}S_{m+2} - \cdots + (-1)^{n-m}\binom{n}{m}S_{n}
+  P : P(\Omega) \longrightarrow [0,1]
+\] 
+que verifique: 
+\begin{enumerate}
+  \item \textbf{Aditividad}: Si \(A, B \subset \Omega, A \cap B = \emptyset\), entonces \(P(A \cup B) = P(A) + P(B)\). 
+  \item \textbf{Normalización}: \(P(\Omega) = 1\).
+\end{enumerate}
+
+El espacio de probabilidad finito es el par \((\Omega,P)\). 
+
+\section{Primeras propiedades de la probabilidad} 
+
+\begin{itemize}
+  \item Si \(A \subset B \subset \Omega\), entonces \(P(A) \leq P(B)\).
+  \item \(P(B) = P(A) + P(B \cap A^c)\) * Si \(A \subset B \subset \Omega\), entonces \(P(B - A) = P(B)- P(A)\). 
+  \item Para cualquier \(A \subset \Omega\), \(P(A^c) = 1 - P(A)\). 
+  \item \(P(\emptyset) = 0\)
+  \item \(P(B) = P(B \cap A) + P(B - A)\)
+  \item \(P(A \cup B) = P(A) + P(B) + P(A \cap B)\). 
+  \item Si \(A_1, A_2,\ldots,A_n\) son sucesos disjuntos dos a dos, es decir que verifiquen \(A_i \cap A_j = \emptyset\) para \(i \neq j\) se cumple
+  \[
+  P(A_1 \cup A_2 \cup \ldots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n)
+  \]
+  \item Si \(\Omega = \{\omega_1, \omega_2, \ldots, \omega_n \}\) es el espacio muestral de probabilidad finito \((\Omega, P)\) y \(A = \{\omega_1, \omega_2, \ldots, \omega_k\}\) es un suceso se cumple
+  \[
+  P(A) = P(\{\omega_1\}) + P(\{\omega_2\}) + \cdots + P(\{\omega_k\})
+  \]
+\end{itemize}
+
+
+\chapter{Asignación de probabilidades}
+
+\section{Regla de Laplace} 
+
+La probabilidad de un suceso \(A\) relativo a un fenómeno aleatorio es 
+\[
+  P(A) = \frac{\text{número de casos favorables de A}}{\text{número de casos posibles}}
+\] 
+supuesto que todos los casos posibles son igualmente probables.
+
+\section{Las formulas de inclusión y exclusión}
+
+\subsection{Probabilidad de una unión de sucesos}
+
+Si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera de un espacio de probabilidad, se cumple 
+\[
+  P(A_1 \cup A_2 \cup \cdots \cup A_n) = S_1 - S_2 + S_3- \cdots + (-1)^{n-2}S_{n-1}+(-1)^{n-1}S_n
+\] 
+donde 
+\[
+  S_k = \sum_{1 \leq i_1 < i_2 < \cdots < i_k < n}P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k})
+\] 
+
+\subsection{Probabilidad de que se realicen m sucesos }
+
+En un espacio de probabilidad, si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera, la probabilidad \(P_{[m]}\) de que ocurran exactamente \(m\) de ellos, es
+\[
+  P_{[m]} = S_m - \binom{m+1}{m}S_{m+1} +\binom{m+2}{m}S_{m+2} - \cdots + (-1)^{n-m}\binom{n}{m}S_{n}
 \]
 
-\subsection{Extensiones del modelo
-matemático}\label{extensiones-del-modelo-matemuxe1tico}
+\chapter{Extensiones del modelo matemático}
+\label{extensiones-del-modelo-matemuxe1tico}
 
-\subsubsection{Espacios muestrales
-numerables}\label{espacios-muestrales-numerables}
+\section{Espacios muestrales numerables}
+\label{espacios-muestrales-numerables}
 
-Los conjuntos finitos son \textbf{discretos} y los infinitos numerables
-son \textbf{numerables}.
+Los conjuntos finitos son \textbf{discretos} y los infinitos numerables son \textbf{numerables}.
 
-Si \(\Omega\) es infinito numerable, el conjunto de sucesos,
-\(P(\Omega)\), no es numerable, si no que su cardinal es aún mayor
-(\(2^\mathbb{N}\)).
+Si \(\Omega\) es infinito numerable, el conjunto de sucesos, \(P(\Omega)\), no es numerable, si no que su cardinal es aún mayor (\(2^\mathbb{N}\)).
 
-\subsubsection{Propiedades adicionales de la
-probabilidad}\label{propiedades-adicionales-de-la-probabilidad}
+\section{Propiedades adicionales de la probabilidad}
+\label{propiedades-adicionales-de-la-probabilidad}
 
-Sobre un espacio muestral numerable \(\Omega\), una probabilidad es una
-aplicación \[P:P(\Omega) \rightarrow [0,1]\] que verifique 1. Si \(A_n\)
-es una sucesión de suceso tales que \(A_i \cap A_j = \emptyset\) para
-\(i \neq j\),
-entonces\[P\big(\bigcup_{n=1}^\infty A_n\big) = \sum_{n=1}^\infty P(A_n)\]
-2. \(P(\Omega) = 1\) Si se cumplen ambas condiciones, \((\Omega,P)\)
-constituye un espacio de probabilidad numerable.
+Sobre un espacio muestral numerable \(\Omega\), una probabilidad es una aplicación \[P:P(\Omega) \rightarrow [0,1]\] que verifique:
+\begin{enumerate}
+  \item Si \(A_n\) es una sucesión de suceso tales que \(A_i \cap A_j = \emptyset\) para \(i \neq j\), entonces
+  \[
+  P\left(\bigcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty P(A_n)
+  \]
+  \item \(P(\Omega) = 1\) Si se cumplen ambas condiciones, \((\Omega,P)\) constituye un espacio de probabilidad numerable.
+\end{enumerate}
 
-En la construcciones de espacios de probabilidad no finitos, la regla de
-Laplace para atribuir probabilidades resulta inservible directamente.
 
-\paragraph{Modelo geométrico o de
-Pascal}\label{modelo-geomuxe9trico-o-de-pascal}
+En las construcciones de espacios de probabilidad no finitos, la regla de Laplace para atribuir probabilidades resulta inservible directamente.
 
-\[\Omega = \mathbb{N} \qquad P(\{n\}) = p (1-p)^{n-1}\ \text{para cada }n \in \mathbb{N}\]
-\#\#\# Modelos continuos No es posible que un modelo continuo asigne
-probabilidad a todos los subconjuntos de \(\mathbb{R}\). Se toman en
-cuenta los intervalos de \(\mathbb{R}\).
+\subsection{Modelo geométrico o de Pascal}
+\label{modelo-geomuxe9trico-o-de-pascal}
 
-La probabilidad de un suceso \(A \subset \mathbb{R}\) no puede obtenerse
-sumando la probabilidad de las puntos contenidos en \(A\).
+\[
+\Omega = \mathbb{N} \qquad P(\{n\}) = p (1-p)^{n-1}\ \text{para cada }n \in \mathbb{N}
+\]
 
-Una función \(f: \mathbb{R} \rightarrow \mathbb{R}\) (con un número
-finito de discontinuidades) se denomina \textbf{densidad de
-probabilidad} si verifica 1. \(f(x) \geq 0\) para todo
-\(x \in \mathbb{R}\) 2. \(\int_\mathbb{R} f(x)dx = 1\) El modelo
-probabilístico asociado a la función de densidad \(f\) asigna
-probabilidad \[P(x) = \int_I f(x)dx\] a cualquier intervalo \(I\) de
+\section{Modelos continuos} 
+
+No es posible que un modelo continuo asigne probabilidad a todos los subconjuntos de \(\mathbb{R}\). Se toman en cuenta los intervalos de \(\mathbb{R}\).
+
+La probabilidad de un suceso \(A \subset \mathbb{R}\) no puede obtenerse sumando la probabilidad de los puntos contenidos en \(A\).
+
+Una función \(f: \mathbb{R} \rightarrow \mathbb{R}\) (con un número finito de discontinuidades) se denomina \textbf{densidad de   probabilidad} si verifica 1. \(f(x) \geq 0\) para todo
+\(x \in \mathbb{R}\) 2. \(\int_\mathbb{R} f(x)dx = 1\) El modelo probabilístico asociado a la función de densidad \(f\) asigna probabilidad \[P(x) = \int_I f(x)dx\] a cualquier intervalo \(I\) de
 \(\mathbb{R}\).
 
-Se puede aproximar mediante
-\[P([x, x + \bigtriangleup x]) \simeq f(x)\bigtriangleup x\] \#\#\#\#
-Distribución normal
-\[\varphi(x) = \frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\] \#\#
-Probabilidad condicionada \[
-P(A|B) = \frac{\text{número de casos favorables de } A\text{ y }B}{\text{número de casos en los que ocurre }B}
-\] Si \(A\) y \(B\) son sucesos de un cierto de espacio de probabilidad
-y se cumple que \(P(B) > 0\), la probabilidad de \(A\) condicionada a
-\(B\) es \[P(A|B) = \frac{P(A \cap B)}{P(B)}\] \[P(A)P(B|A)=P(B)P(A|B)\]
-\#\#\# Propiedades 1. Si \(A_1,A_2,\ldots,A_n,\ldots\) son sucesos
-disjuntos se
-cumple\begin{eqnarray}P(A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots| B) \\&= \frac{P((A_1 \cap B) \cup (A_2 \cap B) \cup \cdots \cup (A_n \cap B)\cdots)}{P(B)} \\&= \frac{P((A_1 \cap B) + P(A_2 \cap B) + \cdots + P(A_n \cap B) + \cdots)}{P(B)} \\&= P(A_1|B) + P(A_2|B) + \cdots + P(A_n|B) + \cdots\end{eqnarray}
-de forma que \(P(\cdot|B)\) es numeralmente aditiva. 2. Por otra
-parte\[P(\Omega|B)=\frac{P(\Omega \cap B)}{P(B)} = 1\] y más
-concretamente \[P(B|B) = 1\] \textgreater{[}!proposición{]} Formula de
-las probabilidades totales \textgreater Si \(B_1,B_2,\ldots,B_n,\ldots\)
-es una familia de sucesos de probabilidades positivas, disjuntos dos a
-dos, tales que
-\textgreater{}\[B_1 \cup B_2 \cup \cdots \cup B_n \cup \cdots = \Omega\]
-\textgreater se verifica
-\textgreater{}\[P(A) = P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + \cdots+ P(B_n)P(A|B_n) + \cdots\]
-\textgreater para cualquier suceso \(A \subset \Omega\).
+Se puede aproximar mediante 
+\[
+P([x, x + \bigtriangleup x]) \simeq f(x)\bigtriangleup x
+\] 
 
-\begin{quote}
-{[}!proposición{]} Formula de Bayes Si \(B_1,B_2,\ldots,B_n,\ldots\) es
-una familia de sucesos de probabilidades positivas, disjuntos dos a dos,
-tales que \[B_1 \cup B_2 \cup \cdots \cup B_n \cup \cdots = \Omega\]
-para cualquier suceso \(A\) de probabilidad positiva, de acuerdo con la
-definición, se tiene
-\[P(B_i|A) = \frac{P(B_i \cap A)}{P(A)} = \frac{P(B_i)P(A|B_i)}{P(A)}\]
-lo cual, combinado con la fórmula de las probabilidades totales se puede
-expresar
-\[P(B_i|A) = \frac{P(B_i)P(A|B_i)}{P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + \cdots+ P(B_n)P(A|B_n)}\]
-\#\#\# El método recurrente Un situación en la que obtener la
-probabilidad de un suceso dependa exclusivamente de lo ocurrido en la
-etapa anterior se llama situación \textbf{markoviana}. \#\#
-Independencia de sucesos \#\#\# Sucesos dependientes e independientes Si
-un suceso \(A\) influye, favorablemente o desfavorablemente, en otro
-\(B\), se dice que el segundo es \textbf{dependiente} del primero.
-\end{quote}
+\subsection{Distribución normal}
 
-En un fenómeno aleatorio, el suceso \(A\) se dice \textbf{independiente}
-del suceso \(B\) (supuesto que \(B\) tiene probabilidad positiva) si
-\[P(A|B) = P(A) \qquad \frac{P(A \cap B)}{P(B)} = P(A) \qquad P(A \cap B) = P(A)P(B)\]
+\[
+\varphi(x) = \frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}
+\]
+
+
+\chapter{Probabilidad condicionada}
+
+\[
+  P(A|B) = \frac{\text{ número de casos favorables de } A\text{ y }B}{\text{ número de casos en los que ocurre }B}
+\] 
+
+Si \(A\) y \(B\) son sucesos de un cierto de espacio de probabilidad y se cumple que \(P(B) > 0\), la probabilidad de \(A\) condicionada a
+\(B\) es 
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}\] \[P(A)P(B|A)=P(B)P(A|B)
+\] 
+
+\section{Propiedades} 
+
+\begin{enumerate}
+  \item Si \(A_1,A_2,\ldots,A_n,\ldots\) son sucesos disjuntos se cumple
+  \begin{align*}
+    P(A_1 \cup A_2 \cup \cdots \cup A_n &\cup \cdots| B) \\&= \frac{P((A_1 \cap B) \cup (A_2 \cap B) \cup \cdots \cup (A_n \cap B)\cdots)}{P(B)} \\&= \frac{P((A_1 \cap B) + P(A_2 \cap B) + \cdots + P(A_n \cap B) + \cdots)}{P(B)} \\&= P(A_1|B) + P(A_2|B) + \cdots + P(A_n|B) + \cdots
+  \end{align*}
+  de forma que \(P(\cdot|B)\) es numeralmente aditiva. 
+  \item Por otra parte
+  \[
+    P(\Omega|B)=\frac{P(\Omega \cap B)}{P(B)} = 1
+  \] 
+  y más concretamente 
+  \[
+  P(B|B) = 1
+  \] 
+\end{enumerate}
+
+\begin{proposition}[Formula de las probabilidades totales]
+Si \(B_1,B_2,\ldots,B_n,\ldots\) es una familia de sucesos de probabilidades positivas, disjuntos dos a dos, tales que
+\[
+B_1 \cup B_2 \cup \cdots \cup B_n \cup \cdots = \Omega
+\]
+se verifica
+\[
+P(A) = P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + \cdots+ P(B_n)P(A|B_n) + \cdots
+\]
+para cualquier suceso \(A \subset \Omega\).  
+\end{proposition}
+
+
+\begin{proposition}[Formula de Bayes]
+  Si \(B_1,B_2,\ldots,B_n,\ldots\) es una familia de sucesos de probabilidades positivas, disjuntos dos a dos, tales que 
+  \[
+  B_1 \cup B_2 \cup \cdots \cup B_n \cup \cdots = \Omega
+  \]
+  para cualquier suceso \(A\) de probabilidad positiva, de acuerdo con la definición, se tiene
+  \[
+  P(B_i|A) = \frac{P(B_i \cap A)}{P(A)} = \frac{P(B_i)P(A|B_i)}{P(A)}
+  \]
+  lo cual, combinado con la fórmula de las probabilidades totales se puede expresar
+  \[
+  P(B_i|A) = \frac{P(B_i)P(A|B_i)}{P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + \cdots+ P(B_n)P(A|B_n)}
+  \]  
+\end{proposition}
+
+\section{El método recurrente} 
+
+Una situación en la que obtener la probabilidad de un suceso dependa exclusivamente de lo ocurrido en la etapa anterior se llama situación \textbf{markoviana}.
+
+\chapter{Independencia de  sucesos}
+
+\section{Sucesos dependientes e independientes} 
+
+Si un suceso \(A\) influye, favorablemente o desfavorablemente, en otro \(B\), se dice que el segundo es \textbf{dependiente} del primero.
+
+En un fenómeno aleatorio, el suceso \(A\) se dice \textbf{independiente} del suceso \(B\) (supuesto que \(B\) tiene probabilidad positiva) si
+\[
+P(A|B) = P(A) \qquad \frac{P(A \cap B)}{P(B)} = P(A) \qquad P(A \cap B) = P(A)P(B)
+\]
+
 Si \(A\) y \(B\) son independientes, también lo son \(A\) y \(B^c\).
-\[P(A \cap B^c) = P(A)P(B^c)\] \#\#\# Espacios producto Dados dos
-espacios de probabilidad \((\Omega_1,P_1)\) y \((\Omega_2, P_2)\), el
-\textbf{espacio producto} \((\Omega,P)\) sería
-\[\Omega = \Omega_1 \times \Omega_2 \qquad P=P(A \times B) = P_1(A)P_2(B)\]
-Un \textbf{conjunto cilindro} de una sucesión de términos \(a_i\) de
-\(\Omega^{\mathbb(N)}\) es aquella en la que los primeros \(n\) términos
-deben cumplir una condición y el resto no esta sometido a ninguna
-limitación. \#\#\# Independencia de varios sucesos En un espacio de
-probabilidad, tres sucesos \(A_1, A_2, A_3\) son independientes si se
-cumplen las condiciones 1. \(P(A_1 \cap A_2) = P(A_1)P(A_2)\) 2.
-\(P(A_1 \cap A_3) = P(A_1)P(A_3)\) 3. \(P(A_2 \cap A_3) = P(A_2)P(A_3)\)
-4. \(P(A_1 \cap A_2 \cap A_3) = P(A_1)P(A_2)P(A_3)\) Tres sucesos pueden
-ser independientes dos a dos, sin ser independientes.
+\[
+P(A \cap B^c) = P(A)P(B^c)
+\] 
 
-En un espacio de probabilidad, los sucesos \(\{A_i | i \in I\}\) se
-dicen independientes si
-\[P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k})= P(A_{i_1})P(A_{i_2}) \cdots P(A_{i_k})\]
-cualquiera que sea \(k \in \mathbb{N}\) y cualesquiera que sea
-\(i_1, i_2,\ldots, i_k \in I\). \#\#\# La independencia condicional Sea
-\(A\), \(B\) y \(C\) tres sucesos en un espacio de probabilidad
-\((\Omega,P)\). Si se verifica \[P(A \cap B|C) = P(A|C)P(B|C)\] se dice
-que \(A\) y \(B\) son \textbf{independientes condicionalmente} a \(C\).
+\section{Espacios producto} 
 
-Los sucesos \(A\) y \(B\) pueden ser condicionalmente independientes,
-tanto cuando ocurre \(C\) como cuando no ocurre, y no ser
-independientes.
+Dados dos espacios de probabilidad \((\Omega_1,P_1)\) y \((\Omega_2, P_2)\), el \textbf{espacio producto} \((\Omega,P)\) sería 
+\[
+\Omega = \Omega_1 \times \Omega_2 \qquad P=P(A \times B) = P_1(A)P_2(B)
+\]
 
-Dos sucesos \(A\) y \(B\) pueden ser independientes, per no ser
-condicionalmente independientes a \(C\) ni a \(C^c\). \#\# Apéndice I.
-Combinatoria \#\#\# Principios generales \textbf{Contar} es hallar el
-\textbf{cardinal} de un conjunto. La \textbf{combinatoria} es el arte de
-contar conjuntos sin hacer enumeraciones.
+Un \textbf{conjunto cilindro} de una sucesión de términos \(a_i\) de \(\Omega^{\mathbb(N)}\) es aquella en la que los primeros \(n\) términos
+deben cumplir una condición y el resto no esta sometido a ninguna limitación. 
 
-Si en una competición se inscriben \(n\) jugadores se juegan \(n-1\)
-partidos.
+\section{Independencia de varios sucesos} 
 
-El \textbf{procedimiento constructivo} consiste en recorrer mentalmente
-los pasos a seguir para formar todos los elementos del conjunto,
-anotando las alternativas que pueden elegirse en cada uno.
+En un espacio de probabilidad, tres sucesos \(A_1, A_2, A_3\) son independientes si se cumplen las condiciones
+\begin{enumerate}
+  \item \(P(A_1 \cap A_2) = P(A_1)P(A_2)\)
+  \item \(P(A_1 \cap A_3) = P(A_1)P(A_3)\) 
+  \item \(P(A_2 \cap A_3) = P(A_2)P(A_3)\)
+  \item \(P(A_1 \cap A_2 \cap A_3) = P(A_1)P(A_2)P(A_3)\)
+\end{enumerate} 
 
-Si los conjuntos \(A_1, A_2, \ldots, A_n\) tienen
-\(n_1, n_2,\ldots, n_n\) elementos respectivamente, el producto
-cartesiano \(A_1 \times A_2 \times \cdots \times A_n\) tiene
+Tres sucesos pueden ser independientes dos a dos, sin ser independientes.
+
+En un espacio de probabilidad, los sucesos \(\{A_i | i \in I\}\) se dicen independientes si 
+\[
+P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k})= P(A_{i_1})P(A_{i_2}) \cdots P(A_{i_k})
+\]
+cualquiera que sea \(k \in \mathbb{N}\) y cualesquiera que sea \(i_1, i_2,\ldots, i_k \in I\). 
+
+
+\section{La independencia condicional} 
+
+Sea \(A\), \(B\) y \(C\) tres sucesos en un espacio de probabilidad \((\Omega,P)\). Si se verifica 
+\[
+P(A \cap B|C) = P(A|C)P(B|C)
+\] se dice que \(A\) y \(B\) son \textbf{independientes condicionalmente} a \(C\).
+
+Los sucesos \(A\) y \(B\) pueden ser condicionalmente independientes, tanto cuando ocurre \(C\) como cuando no ocurre, y no ser independientes.
+
+Dos sucesos \(A\) y \(B\) pueden ser independientes, per no ser condicionalmente independientes a \(C\) ni a \(C^c\). 
+
+
+\chapter*{Apéndice I. Combinatoria} 
+
+\section{Principios generales} 
+
+\textbf{Contar} es hallar el \textbf{cardinal} de un conjunto. La \textbf{combinatoria} es el arte de contar conjuntos sin hacer enumeraciones.
+
+Si en una competición se inscriben \(n\) jugadores se juegan \(n-1\) partidos.
+
+El \textbf{procedimiento constructivo} consiste en recorrer mentalmente los pasos a seguir para formar todos los elementos del conjunto,
+anotando las alternativas que pueden elegirse en cada uno. 
+
+Si los conjuntos \(A_1, A_2, \ldots, A_n\) tienen \(n_1, n_2,\ldots, n_n\) elementos respectivamente, el producto cartesiano \(A_1 \times A_2 \times \cdots \times A_n\) tiene
 \(n_1n_2\cdots n_n\) elementos.
 
-No tiene ninguna relevancia donde se producen las restricciones, sólo
-cuales son estas.
+No tiene ninguna relevancia donde se producen las restricciones, solo cuales son estas.
 
-\subsubsection{Patrones más usuales}\label{patrones-muxe1s-usuales}
+\section{Patrones más usuales}
+\label{patrones-muxe1s-usuales}
 
-\paragraph{Ordenaciones}\label{ordenaciones}
+\subsection{Ordenaciones}
+\label{ordenaciones}
 
-\(n\) objetos distintos pueden ordenarse en fila de \(n!\) maneras
-distintas.
+\(n\) objetos distintos pueden ordenarse en fila de \(n!\) maneras distintas.
 
-Una colección de \(n\) objetos, clasificados en \(k\) grupos de objetos
-idénticos entre sí, el primero con \(n_1\) objetos, el segundo con
-\(n_2\),\ldots{} se pueden ordenar en fila de
-\[\frac{n!}{n_1!n_2!\cdots n_k!}\] maneras distintas, si no se
-consideran distintas las ordenaciones en las cuales dos objetos iguales
-han permutado su posición. \#\#\#\# Subconjuntos ordenados Hay
-\[n(n-1)(n-2)\cdots(n-r+1) = \frac{n!}{(n-r)!} = (n)_r\] subconjuntos
-ordenados posibles de \(r\) elementos, que pueden extraerse de un
-conjunto de \(n\) elementos. También conocidos como **variaciones sin
-repetición de \(r\) elementos tomados entre \(n\).
+Una colección de \(n\) objetos, clasificados en \(k\) grupos de objetos idénticos entre sí, el primero con \(n_1\) objetos, el segundo con
+\(n_2\),\ldots{} se pueden ordenar en fila de 
+\[
+\frac{n!}{n_1!n_2!\cdots n_k!}
+\] 
+maneras distintas, si no se consideran distintas las ordenaciones en las cuales dos objetos iguales han permutado su posición. 
 
-El número de \textbf{variaciones con repetición} de \(r\) elementos
-tomados entre \(n\) es \(n^r\). \#\#\#\# Subconjuntos El número de
-subconjuntos distintos, con \(r\) elementos, que pueden extraerse de un
-conjunto de \(n\) elementos es \[\binom{n}{r}=\frac{n!}{r!(n-r!)}\] o
-\textbf{combinaciones} de \(r\) elementos tomados entre \(n\).
+\subsection{Subconjuntos ordenados} 
 
-La diferencia entre variaciones y subconjuntos es si el orden de
-aparición de los elementos es importante. \#\#\#\# Repartos Si hay que
-repartir \(r\) objetos iguales en \(n\) grupos, existen
-\[\binom{n+r-1}{r}\] repartos posibles. \#\#\# Identidades combinatorias
-Una \textbf{identidad combinatoria} es una igualdad \(f(n)=g(n)\),
-válida para cada \(n\) natural, en la cual \(f(n)\) y \(g(n)\) son
-cantidades relacionadas con el cardinal de algún conjunto.
+Hay \[n(n-1)(n-2)\cdots(n-r+1) = \frac{n!}{(n-r)!} = (n)_r\] subconjuntos ordenados posibles de \(r\) elementos, que pueden extraerse de un
+conjunto de \(n\) elementos. También conocidos como \emph{variaciones sin repetición de \(r\) elementos tomados entre \(n\)}.
+
+El número de \textbf{variaciones con repetición} de \(r\) elementos tomados entre \(n\) es \(n^r\). 
+
+\subsection{Subconjuntos} 
+
+El número de subconjuntos distintos, con \(r\) elementos, que pueden extraerse de un conjunto de \(n\) elementos es 
+\[
+\binom{n}{r}=\frac{n!}{r!(n-r!)}
+\] 
+o \textbf{combinaciones} de \(r\) elementos tomados entre \(n\).
+
+La diferencia entre variaciones y subconjuntos es si el orden de aparición de los elementos es importante. 
+
+\subsection{Repartos} 
+
+Si hay que repartir \(r\) objetos iguales en \(n\) grupos, existen 
+\[
+\binom{n+r-1}{r}
+\] 
+repartos posibles. 
+
+\section{Identidades combinatorias}
+
+Una \textbf{identidad combinatoria} es una igualdad \(f(n)=g(n)\), válida para cada \(n\) natural, en la cual \(f(n)\) y \(g(n)\) son
+cantidades relacionadas con el cardinal de algún conjunto. 
 \[\binom{n}{k}=\binom{n}{n-k}\] \[2^n=\sum_{k=0}^n \binom{n}{k}\] \[
-\sum_{i=0}^n \binom{n}{i}^2 = \binom{2n}{n}
+  \sum_{i=0}^n \binom{n}{i}^2 = \binom{2n}{n}
 \] \[
-\sum_{k=0}^{m-1} \binom{n}{k}\binom{n-1}{m-k-1}=\binom{n+m-1}{n}
+  \sum_{k=0}^{m-1} \binom{n}{k}\binom{n-1}{m-k-1}=\binom{n+m-1}{n}
 \] \[
-\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}
+  \binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}
 \] \[
-\binom{n}{k}=\sum_{j=0}^{k}\binom{n-j-1}{k-j}=\sum_{j=1}^{n-k+1}\binom{n-j}{k-1}
+  \binom{n}{k}=\sum_{j=0}^{k}\binom{n-j-1}{k-j}=\sum_{j=1}^{n-k+1}\binom{n-j}{k-1}
 \] Si \(x \in \mathbb{R}\) y \(r >0\) \[
-\binom{x}{r} = \frac{x(x-1)(x-2)\cdots(x-r+1)}{r!}
+  \binom{x}{r} = \frac{x(x-1)(x-2)\cdots(x-r+1)}{r!}
 \] y si \(r < 0\) \[
-\binom{x}{0} = 1 \qquad \binom{x}{r} = 0
+  \binom{x}{0} = 1 \qquad \binom{x}{r} = 0
 \] \#\#\#\# Identidad inmediata \[
-\binom{-x}{r} = (-1)^r\binom{x+r-1}{r}
+  \binom{-x}{r} = (-1)^r\binom{x+r-1}{r}
 \] \#\#\#\# Desarrollo de Taylor Si \(|t|<1\) y para cualquier
 \(x \in \mathbb{R}\) \[
-(1+t)^x=1 + \binom{x}{1}t + \binom{x}{2}t^2 + \cdots + \binom{x}{r}t^r+\cdots
+  (1+t)^x=1 + \binom{x}{1}t + \binom{x}{2}t^2 + \cdots + \binom{x}{r}t^r+\cdots
 \] y si \(|b| < |a|\) y cualquier \(x \in \mathbb{R}\) \[
-(a+b)^x=a^x + \binom{x}{1}ba^{x-1} + \binom{x}{2}b^2a^{x-2} + \cdots + \binom{x}{r}b^ra^{a-r}+\cdots
+  (a+b)^x=a^x + \binom{x}{1}ba^{x-1} + \binom{x}{2}b^2a^{x-2} + \cdots + \binom{x}{r}b^ra^{a-r}+\cdots
 \]
 
 \[
-(1-t)^n\sum_{r=0}^\infty \binom{n+r-1}{r}t^r=1
+  (1-t)^n\sum_{r=0}^\infty \binom{n+r-1}{r}t^r=1
 \] \[
-(-1)^n\binom{-\frac{1}{2}}{n}=\binom{2n}{n}\frac{1}{2^{2n}}
+  (-1)^n\binom{-\frac{1}{2}}{n}=\binom{2n}{n}\frac{1}{2^{2n}}
 \] \[
-\sum_{n=0}^\infty \frac{2n}{n}\frac{t^n}{2^{2n}}=(1-t)^{\frac{-1}{2}}
+  \sum_{n=0}^\infty \frac{2n}{n}\frac{t^n}{2^{2n}}=(1-t)^{\frac{-1}{2}}
 \] y si \(n\) es un entero positivo \[
-\binom{x+y}{n}=\binom{x}{0}\binom{y}{n}+\binom{x}{1}\binom{y}{n-1}+\binom{x}{2}\binom{y}{n-2}+\cdots+\binom{x}{n}\binom{y}{0}
-\] \#\#\#\# Formula de Stirling \[
-n! = \sqrt{2n}n^{n+\frac{1}{2}}e^{-n}
+  \binom{x+y}{n}=\binom{x}{0}\binom{y}{n}+\binom{x}{1}\binom{y}{n-1}+\binom{x}{2}\binom{y}{n-2}+\cdots+\binom{x}{n}\binom{y}{0}
+\] 
+
+\section{Formula de Stirling} 
+\[
+  n! = \sqrt{2n}n^{n+\frac{1}{2}}e^{-n}
 \] con más precisión \[
-1 < \frac{n!}{\sqrt{2n}n^{n+\frac{1}{2}}e^{-n}} < e^{\frac{1}{8n}}
+  1 < \frac{n!}{\sqrt{2n}n^{n+\frac{1}{2}}e^{-n}} < e^{\frac{1}{8n}}
 \]
+
+\section{Ejemplos de desarrollos de funciones en series de potencias}
+
+\begin{align}
+	e^x &= \sum_{n=0}^\infty \frac{x^n}{n!}, \qquad x \in (-\infty,\infty) \\
+	\sin x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}, \qquad x \in (-\infty,\infty) \\ 
+	\cos x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}, \qquad x \in (-\infty,\infty) \\
+	\frac{1}{1-x} &= \sum_{n=0}^\infty x^n, \qquad x \in (-1,1) \\
+	\frac{1}{1+x} &= \sum_{n=0}^\infty (-1)^n x^n, \qquad x \in (-1,1) \\
+	\log(1-x) &= \sum_{n=0}^\infty \frac{x^{n+1}}{n+1}, \qquad x \in (-1,1) \\
+	\log(1+x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{n+1}}{n+1}, \qquad x \in (-1,1) \\
+	\log(\frac{1-x}{1+x}) &= 2\sum_{n=0}^\infty \frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
+	\frac{1}{1+x*2} &= \sum_{n=0}^\infty (-1)^n x^{2n}, \qquad x \in (-1,1) \\
+	\arctan(x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
+	(1+x)^\alpha &= 1 + \sum_{n=1}^\infty \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n, \qquad x \in (-1,1) \\
+	\frac{1}{\sqrt{1+x}} &= 1 + \sum_{n=1}^\infty (-1)^n \frac{(2n-1)!!}{(2n)!!}x^n, \qquad x \in (-1,1) \\
+	\frac{1}{\sqrt{1-x^2}} &= 1 +  \sum_{n=1}^\infty \frac{(2n-1)!!}{(2n)!!}x^{2n}, \qquad x \in (-1,1) \\
+	\frac{1}{\sqrt{1+x^2}} &= 1 + \sum_{n=1}^\infty (-1)^n \frac{(2n-1)!!}{(2n)!!}x^{2n}, \qquad x \in (-1,1) \\
+	\arcsin x &= x+ \sum_{n=1}^\infty  \frac{(2n-1)!!}{(2n)!!}\frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
+	argsh x &= x+ \sum_{n=1}^\infty  (-1)^n \frac{(2n-1)!!}{(2n)!!}\frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) 
+\end{align}
 
 \end{document}

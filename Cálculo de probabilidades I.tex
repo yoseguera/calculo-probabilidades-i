@@ -368,6 +368,38 @@ Los sucesos \(A\) y \(B\) pueden ser condicionalmente independientes, tanto cuan
 
 Dos sucesos \(A\) y \(B\) pueden ser independientes, per no ser condicionalmente independientes a \(C\) ni a \(C^c\). 
 
+\chapter{Variables aleatorias}
+
+\section{El concepto de variable aleatoria}
+
+En un espacio de probabilidad discreto \((\Omega,P)\), se denomina \emph{variable aleatoria}, a cualquier función
+\[
+X: \Omega \rightarrow \R
+\]
+
+Si la variable aleatoria \(X\) estuviese definida en un espacio muestral no numerable no habría ninguna garantías que conjuntos del tipo \(X^{-1}(a,b]\) fuesen sucesos.
+
+\section{Distribución de una variable aleatoria}
+
+La colección de probabilidades \(=\{X \in B\}\), correspondientes a cada subconjunto \(B\) de $\R$, se denomina la \emph{distribución de la variable aleatoria $X$}.
+
+Una variable aleatoria $X$ es \emph{discreta} si toma a lo sumo un número numerable de valores
+\[
+X(\Omega) = \{x_1, x_2, x_2, \ldots, x_n\}
+\]
+La función que a cada $x_k$ asigna el valores
+\[
+p_k =  P\{X = x_k\}
+\]
+se denomina \emph{función de probabilidad de $X$}.
+
+Naturalmente debe ser
+\[
+\sum_{k=1}^\infty p_k = 1
+\]
+
+Una urna en la que se introducen tarjetas que llevan anotado uno de los números $x_i$. Si la proporción de tarjetas con el número $x_i$ es $p_i$, el número obtenido al elegir una tarjeta al azar, es una variable aleatoria con la función de probabilidad requerida\footnote{El mecanismo tropeará con dificultades si alguna de las $p_i$ es irracional, por la imposibilidad de que, con un número finito de tarjetas, la proporción de algún subconjunto de ellas sea irracional. Una alternativa es dividir $\Omega = [0,1]$ en segmentos de longitud $p_1,p_2,\ldots,p_i,\ldots$ y escoger un punto con distribución uniforme en $[0,1]$.}.
+
 
 \chapter*{Apéndice I. Combinatoria} 
 
@@ -467,7 +499,7 @@ cantidades relacionadas con el cardinal de algún conjunto.
   1 < \frac{n!}{\sqrt{2n}n^{n+\frac{1}{2}}e^{-n}} < e^{\frac{1}{8n}}
 \]
 
-\section{Ejemplos de desarrollos de funciones en series de potencias}
+\chapter*{Desarrollo de series}
 
 \begin{align}
 	e^x &= \sum_{n=0}^\infty \frac{x^n}{n!}, \qquad x \in (-\infty,\infty) \\

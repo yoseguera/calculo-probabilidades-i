@@ -110,10 +110,10 @@
 
 \tableofcontents
 
-\subsection{El modelo matemático de la probabilidad}
+\chapter{El modelo matemático de la probabilidad}
 \label{el-modelo-matemuxe1tico-de-la-probabilidad}
 
-\subsubsection{Espacio muestral y sucesos}
+\section{Espacio muestral y sucesos}
 \label{espacio-muestral-y-sucesos}
 
 Los resultados posibles constituyen un conjunto finito que se denomina \textbf{espacio muestral} del fenómeno aleatorio en cuestos y se designa
@@ -131,7 +131,7 @@ Si la intersección de dos sucesos \(A\) y \(B\) es vacía \(A \cap B = \emptyse
 
 El \textbf{suceso contrario} es \(A^c = \Omega - A\).
 
-\subsubsection{El concepto de probabilidad}
+\section{El concepto de probabilidad}
 \label{el-concepto-de-probabilidad}
 
 Sobre un espacio muestral finito \(\Omega\), una probabilidad es una aplicación 
@@ -176,7 +176,7 @@ La probabilidad de un suceso \(A\) relativo a un fenómeno aleatorio es
 \] 
 supuesto que todos los casos posibles son igualmente probables.
 
-\section{Las formulas de inclusión y exclusión}
+\chapter{Las formulas de inclusión y exclusión}
 
 \subsection{Probabilidad de una unión de sucesos}
 
@@ -398,126 +398,59 @@ Naturalmente debe ser
 \sum_{k=1}^\infty p_k = 1
 \]
 
-Una urna en la que se introducen tarjetas que llevan anotado uno de los números $x_i$. Si la proporción de tarjetas con el número $x_i$ es $p_i$, el número obtenido al elegir una tarjeta al azar, es una variable aleatoria con la función de probabilidad requerida\footnote{El mecanismo tropeará con dificultades si alguna de las $p_i$ es irracional, por la imposibilidad de que, con un número finito de tarjetas, la proporción de algún subconjunto de ellas sea irracional. Una alternativa es dividir $\Omega = [0,1]$ en segmentos de longitud $p_1,p_2,\ldots,p_i,\ldots$ y escoger un punto con distribución uniforme en $[0,1]$.}.
+Una urna en la que se introducen tarjetas que llevan anotado uno de los números $x_i$. Si la proporción de tarjetas con el número $x_i$ es $p_i$, el número obtenido al elegir una tarjeta al azar, es una variable aleatoria con la función de probabilidad requerida\footnote{El mecanismo tropezará con dificultades si alguna de las $p_i$ es irracional, por la imposibilidad de que, con un número finito de tarjetas, la proporción de algún subconjunto de ellas sea irracional. Una alternativa es dividir $\Omega = [0,1]$ en segmentos de longitud $p_1,p_2,\ldots,p_i,\ldots$ y escoger un punto con distribución uniforme en $[0,1]$.}.
 
+\section{Variables aleatorias simultaneas}
 
-\chapter*{Apéndice I. Combinatoria} 
+La igualdad entre variables aleatorias exige que ambas estén definidas en el mismo espacio de probabilidad; en cambio la igualdad de sus distribuciones puede ocurrir entre variables definidas en espacios distintos.
 
-\section{Principios generales} 
+Dos variables aleatorias tendrán una \emph{relación funcional} cuando una vez elegegida una de ellas, la segunda queda determinada sin ninguna aleatoriedad.
 
-\textbf{Contar} es hallar el \textbf{cardinal} de un conjunto. La \textbf{combinatoria} es el arte de contar conjuntos sin hacer enumeraciones.
-
-Si en una competición se inscriben \(n\) jugadores se juegan \(n-1\) partidos.
-
-El \textbf{procedimiento constructivo} consiste en recorrer mentalmente los pasos a seguir para formar todos los elementos del conjunto,
-anotando las alternativas que pueden elegirse en cada uno. 
-
-Si los conjuntos \(A_1, A_2, \ldots, A_n\) tienen \(n_1, n_2,\ldots, n_n\) elementos respectivamente, el producto cartesiano \(A_1 \times A_2 \times \cdots \times A_n\) tiene
-\(n_1n_2\cdots n_n\) elementos.
-
-No tiene ninguna relevancia donde se producen las restricciones, solo cuales son estas.
-
-\section{Patrones más usuales}
-\label{patrones-muxe1s-usuales}
-
-\subsection{Ordenaciones}
-\label{ordenaciones}
-
-\(n\) objetos distintos pueden ordenarse en fila de \(n!\) maneras distintas.
-
-Una colección de \(n\) objetos, clasificados en \(k\) grupos de objetos idénticos entre sí, el primero con \(n_1\) objetos, el segundo con
-\(n_2\),\ldots{} se pueden ordenar en fila de 
+Si \(X_1, X_2\) son variables aleatorias discretas definidas en el mismo espacio de probabilidad, la distribución conjunta de \((X_1,X_2)\) es la función que asigna a cada $B \subset \R^2$ la probabilidad
 \[
-\frac{n!}{n_1!n_2!\cdots n_k!}
-\] 
-maneras distintas, si no se consideran distintas las ordenaciones en las cuales dos objetos iguales han permutado su posición. 
-
-\subsection{Subconjuntos ordenados} 
-
-Hay \[n(n-1)(n-2)\cdots(n-r+1) = \frac{n!}{(n-r)!} = (n)_r\] subconjuntos ordenados posibles de \(r\) elementos, que pueden extraerse de un
-conjunto de \(n\) elementos. También conocidos como \emph{variaciones sin repetición de \(r\) elementos tomados entre \(n\)}.
-
-El número de \textbf{variaciones con repetición} de \(r\) elementos tomados entre \(n\) es \(n^r\). 
-
-\subsection{Subconjuntos} 
-
-El número de subconjuntos distintos, con \(r\) elementos, que pueden extraerse de un conjunto de \(n\) elementos es 
-\[
-\binom{n}{r}=\frac{n!}{r!(n-r!)}
-\] 
-o \textbf{combinaciones} de \(r\) elementos tomados entre \(n\).
-
-La diferencia entre variaciones y subconjuntos es si el orden de aparición de los elementos es importante. 
-
-\subsection{Repartos} 
-
-Si hay que repartir \(r\) objetos iguales en \(n\) grupos, existen 
-\[
-\binom{n+r-1}{r}
-\] 
-repartos posibles. 
-
-\section{Identidades combinatorias}
-
-Una \textbf{identidad combinatoria} es una igualdad \(f(n)=g(n)\), válida para cada \(n\) natural, en la cual \(f(n)\) y \(g(n)\) son
-cantidades relacionadas con el cardinal de algún conjunto. 
-\[\binom{n}{k}=\binom{n}{n-k}\] \[2^n=\sum_{k=0}^n \binom{n}{k}\] \[
-  \sum_{i=0}^n \binom{n}{i}^2 = \binom{2n}{n}
-\] \[
-  \sum_{k=0}^{m-1} \binom{n}{k}\binom{n-1}{m-k-1}=\binom{n+m-1}{n}
-\] \[
-  \binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}
-\] \[
-  \binom{n}{k}=\sum_{j=0}^{k}\binom{n-j-1}{k-j}=\sum_{j=1}^{n-k+1}\binom{n-j}{k-1}
-\] Si \(x \in \mathbb{R}\) y \(r >0\) \[
-  \binom{x}{r} = \frac{x(x-1)(x-2)\cdots(x-r+1)}{r!}
-\] y si \(r < 0\) \[
-  \binom{x}{0} = 1 \qquad \binom{x}{r} = 0
-\] \#\#\#\# Identidad inmediata \[
-  \binom{-x}{r} = (-1)^r\binom{x+r-1}{r}
-\] \#\#\#\# Desarrollo de Taylor Si \(|t|<1\) y para cualquier
-\(x \in \mathbb{R}\) \[
-  (1+t)^x=1 + \binom{x}{1}t + \binom{x}{2}t^2 + \cdots + \binom{x}{r}t^r+\cdots
-\] y si \(|b| < |a|\) y cualquier \(x \in \mathbb{R}\) \[
-  (a+b)^x=a^x + \binom{x}{1}ba^{x-1} + \binom{x}{2}b^2a^{x-2} + \cdots + \binom{x}{r}b^ra^{a-r}+\cdots
+P\{(X_1,X_2) \in B \}
 \]
 
+En realidad, la distribución conjunto de $(X_1,X_2)$ se caracteriza por la función de probabilidad conjunta que hace corresponder
 \[
-  (1-t)^n\sum_{r=0}^\infty \binom{n+r-1}{r}t^r=1
-\] \[
-  (-1)^n\binom{-\frac{1}{2}}{n}=\binom{2n}{n}\frac{1}{2^{2n}}
-\] \[
-  \sum_{n=0}^\infty \frac{2n}{n}\frac{t^n}{2^{2n}}=(1-t)^{\frac{-1}{2}}
-\] y si \(n\) es un entero positivo \[
-  \binom{x+y}{n}=\binom{x}{0}\binom{y}{n}+\binom{x}{1}\binom{y}{n-1}+\binom{x}{2}\binom{y}{n-2}+\cdots+\binom{x}{n}\binom{y}{0}
-\] 
-
-\section{Formula de Stirling} 
-\[
-  n! = \sqrt{2n}n^{n+\frac{1}{2}}e^{-n}
-\] con más precisión \[
-  1 < \frac{n!}{\sqrt{2n}n^{n+\frac{1}{2}}e^{-n}} < e^{\frac{1}{8n}}
+P\{X_1=x_1, X_2=x_2\}
 \]
+a cada par $(x_1,x_2)$ de valores posibles de $(X_1,X_2)$ (que siempre será un subconjunto de $X_1(\Omega) \times X_2(\Omega)$).
 
-\chapter*{Desarrollo de series}
+Las funciones de probabilidad $P\{X_1 = x_2\}$ y $P\{X_2 = x_2\}$ se denominan \emph{funciones de probabilidad marginales} de $X_2$ y $X_2$ respectivamente. Claramente
+\begin{align*}
+  P\{X_1 = x_1\} &= \sum_{x_2 \in X_2(\Omega)} P\{X_1 = x_1, X_2 = x_2\} \\
+  P\{X_1 = x_1\} &= \sum_{x_1 \in X_1(\Omega)} P\{X_1 = x_1, X_2 = x_2\}
+\end{align*}
 
-\begin{align}
-	e^x &= \sum_{n=0}^\infty \frac{x^n}{n!}, \qquad x \in (-\infty,\infty) \\
-	\sin x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}, \qquad x \in (-\infty,\infty) \\ 
-	\cos x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}, \qquad x \in (-\infty,\infty) \\
-	\frac{1}{1-x} &= \sum_{n=0}^\infty x^n, \qquad x \in (-1,1) \\
-	\frac{1}{1+x} &= \sum_{n=0}^\infty (-1)^n x^n, \qquad x \in (-1,1) \\
-	\log(1-x) &= \sum_{n=0}^\infty \frac{x^{n+1}}{n+1}, \qquad x \in (-1,1) \\
-	\log(1+x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{n+1}}{n+1}, \qquad x \in (-1,1) \\
-	\log(\frac{1-x}{1+x}) &= 2\sum_{n=0}^\infty \frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
-	\frac{1}{1+x*2} &= \sum_{n=0}^\infty (-1)^n x^{2n}, \qquad x \in (-1,1) \\
-	\arctan(x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
-	(1+x)^\alpha &= 1 + \sum_{n=1}^\infty \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n, \qquad x \in (-1,1) \\
-	\frac{1}{\sqrt{1+x}} &= 1 + \sum_{n=1}^\infty (-1)^n \frac{(2n-1)!!}{(2n)!!}x^n, \qquad x \in (-1,1) \\
-	\frac{1}{\sqrt{1-x^2}} &= 1 +  \sum_{n=1}^\infty \frac{(2n-1)!!}{(2n)!!}x^{2n}, \qquad x \in (-1,1) \\
-	\frac{1}{\sqrt{1+x^2}} &= 1 + \sum_{n=1}^\infty (-1)^n \frac{(2n-1)!!}{(2n)!!}x^{2n}, \qquad x \in (-1,1) \\
-	\arcsin x &= x+ \sum_{n=1}^\infty  \frac{(2n-1)!!}{(2n)!!}\frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) \\
-	argsh x &= x+ \sum_{n=1}^\infty  (-1)^n \frac{(2n-1)!!}{(2n)!!}\frac{x^{2n+1}}{2n+1}, \qquad x \in (-1,1) 
-\end{align}
+La función de Probabilidad
+\[
+P\{X_2 = x_2 | X_1 = x_1\} = \frac{P\{X_1 = x_1, X_2 = x_2\}}{P\{X_1 = x_1\}}
+\]
+donde $x_1$ es fijo y $x_2$ variable, corresponde a la \emph{distribución de $X_2$ condicionada por $X_1 = x_1$}. De igual forma $P\{X_1 = x_1 | X_2 = x_2\}$ (con $x_2$ fijo y $x_1$ variable) es la función de probabilidad de la distribución de $X_1$ condicionada por $X_2 = x_2$.
 
-\end{document}
+\section{Variables aleatorias independientes}
+
+Dos variables aleatorias $X_1$ y $X_2$, definidas en el mismo espacio probabilidad, se denominas \emph{independientes} si se verifica
+\[
+P\{X_1 = x_1, X_2 = x_2\} = P\{X_1 = x_1\}P\{X_2 = x_2\}
+\]
+cualquiera que sean $x_1$ y $x_2$ entre los valores posibles de las variables.
+
+Las variables aleatorias discretas $X_1,X_2,\ldots,X_r$, definidas en el mismo espacio de probabilidad, se denominan \emph{independientes} si
+\[
+P\{X_1 = x_1, X_2 = x_2,\ldots,X_r=x_r\} = P\{X_1 = x_1\}P\{X_2 = x_2\} \cdots P\{X_r = x_r\}
+\]
+cualquiera que sean $x_1,x_2,\ldots,x_r$ dentro de los valores posibles de $X_1,X_2,\ldots,X_r$ respectivamente.
+
+\begin{lemma}
+  Si $X_1,X_2,\ldots,X_r$ son variables aleatorias discretas e independientes y $C_1,C_2,\ldots,C_r$ sus subconjuntos cualesquiera de sus conjuntos de valores posibles, se verifica
+  \[
+  P\{X_1 \in C_1, X_2 \in C_2,\ldots,X_r \in C_r\} = P\{X_1 \in C_1\}P\{X_2 \in C_2\} \cdots P\{X_r \in C_r\}
+  \]
+  En consecuencia, los sucesos $\{X_1 \in C_1\}, \{X_2 \in C_2\},\ldots,\{X_r \in C_r\}$ son independientes.
+\end{lemma}
+
+\include{08-esperanza-matematica}
+
+\include{I-combinatoria}

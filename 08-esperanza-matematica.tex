@@ -1,0 +1,53 @@
+\chapter{Esperanza matemática}
+
+Si $X$ es una variable aleatoria definida en un espacio de probabilidad discreto $(\Omega,P)$, el \emph{valor esperado}\footnote{Antiguamente, se conocía como \emph{esperanza moral}}, \emph{esperanza matemática} o \emph{media} de $X$ es
+\[
+E[X] = \sum_{\omega \in \Omega} X(\omega)P(\omega)
+\]
+en el supuesto que
+\[
+\sum_{\omega|X(\omega)>0} X(\omega)P(\omega) < \infty \text{ o } \sum_{\omega|X(\omega)<0} -X(\omega)P(\omega) < \infty
+\]
+Si las dos series anteriores divergen, se dice que $E[X]$ no existe mientras que, si la primera diverge y la segunda converge, se toma $E[X]=+\infty$ y, si es al revés, $E[X]=-\infty$.
+
+Si el conjunto de valores posibles de una variable aleatoria $X$ es
+\[X(\Omega)=\{x_1,x_2,\ldots,x_n\}\]
+su \emph{valor esperado}, si existe, se expresa
+\[
+E[X] = \sum_k x_k P\{X=x_k\} = \sum_k x_kp_k
+\]
+donde $p_k$ es la función de probabilidad de $X$.
+
+\section{Propiedades de la esperanza matemática}
+
+\begin{enumerate}
+    \item Cualquier constante $c \in \R$ puede considerarse una variable aleatoria, basta definir $X(\omega) = c$ para todo $\omega \in \Omega$. Su distribución se denomina \emph{distribución causal en $c$}.
+    \[E[c]=c\]
+    \item \emph{Linealidad}: Sean $X_1$ y $X_2$ variables aleatorias discretas en el mismo espacio de probabilidad, cuyas medias son finitas. Si $c_1,c_2 \in \R$
+    \[E[c_1X_1 + c_2X_2]=c_1E[X_1]+c_2E[X_2]\] 
+    \item Sea $X$ una variable aleatoria no negativa, es decir $X(\omega) \geq 0$ para todo $\omega \in \Omega$. Entonces
+    \begin{align*}
+        E[X] &\geq 0 \\
+        X \geq Y &\Rightarrow E[X] \geq E[Y]
+    \end{align*}
+    \item Si $I_A$ es la función indicatriz de un suceso $A$, se tiene
+    \[E[I_A]=P(A)\]
+    \item si $X$ es una variable aleatoria que toma solo valores enteros no negativos, se cumple
+    \[E[X] = \sum_{m=1}^{\infty}P\{X \geq m\}\]
+    o lo que es lo mismo
+    \[E[X] = \sum_{m=0}^{\infty}P\{X > m\}\]
+    Por consiguiente, para una variable aleatoria $X$ con valores enteros
+    \[E[|X|] = \sum_{m=1}^{\infty}P\{|X| \geq m\}\]
+    Las probabilidades $P\{|X| \geq m\}$ se denominan \emph{colas de la distribución}, porque dan la probabilidad de que $X$ esté fuera de la región central $(-m,m)$.
+    Si $X=f(X)$ es una variable aleatoria función no lineal de otra, suele ser
+    \[E[f(X)] \neq f(E[X])\]
+    \item Si $X$, $Y$ son variables aleatorias independientes, con esperanza finita, se verifica
+    \[E[XY] = E[X]E[Y]\]
+\end{enumerate} 
+
+\section{Esperanza condicionada y métodos recurrentes}
+
+El que haya ocurrido un suceso $B$, de probabilidad $P(B) > 0$, da lugar la \emph{esperanza matemática condicionada por $B$}
+\[
+E[X|B] = \sum_{\omega \in \Omega} X(\omega)P\{\omega | B\} = \sum_k x_k P\{X=x_k|B\}
+\]

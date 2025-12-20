@@ -1,0 +1,35 @@
+\chapter{Análisis descriptivo de las distribuciones de probabilidad}
+
+\section{Momentos de una distribución}
+
+\subsection{Respecto al origen}
+
+El \emph{momento de orden $r$ respecto del origen} de una variable aleatoria $X$, o de su distribución de probabilidad, es la esperanza matemática de $X^r$:
+\[
+\alpha_r = E[X^r] = \sum_{\omega \in \Omega} X^r(\omega)P\{\Omega\} = \sum_k x_k^r p_k
+\]
+que, cuando existe, se suele designar por $\alpha_r$.
+
+Salvo cuando $X$ es positiva, no es conveniente considerar más que momentos de orden entero.
+
+Cuando el momento de orden $r$ es finito, también son finitos los momentos de orden inferior a $r$.
+
+\subsection{Respecto a la media o momento central} 
+
+El \emph{momento de orden $r > 1$ respecto a la media o momento central de orden $r$} de una variable aleatoria $X$, o de su distribución, es la esperanza matemática de $(X-E[X])^r$. Por tanto, si se le designa por $\mu_r$, es
+\[
+\mu_r = E[(X-E[X])^r] = \sum_k (x_k -\alpha_1)^r p_k
+\]
+
+Los momentos centrales respecto al origen se relacionan
+\[
+\mu_r = \sum_{i=0}^r (-1)^i \binom{r}{i}\alpha_1^i\alpha_{r-1}
+\]
+siendo $\alpha_0 = 1$.
+
+Por ejemplo,
+\begin{align*}
+    \mu_2 &= \alpha_2 - \alpha_1^2 \\
+    \mu_3 &= \alpha_3 - 3\alpha_1\alpha_2 + 2\alpha_1^3 \\
+    \mu_4 &= \alpha_4 - 4 \alpha_1\alpha_3 + 6\alpha_1^2\alpha_2 - 3\alpha_1^4
+\end{align*}

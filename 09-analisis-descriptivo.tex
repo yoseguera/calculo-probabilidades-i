@@ -33,3 +33,150 @@ Por ejemplo,
     \mu_3 &= \alpha_3 - 3\alpha_1\alpha_2 + 2\alpha_1^3 \\
     \mu_4 &= \alpha_4 - 4 \alpha_1\alpha_3 + 6\alpha_1^2\alpha_2 - 3\alpha_1^4
 \end{align*}
+
+El momento central de segundo orden, $\mu_2$ es el equivalente al momento de inercia y se le conoce como \emph{varianza de la distribución}, y se le designa como $V(X)$ o $\sigma^2(X)$.
+\[
+V(X) = \sigma^2 = E[(X-E[X])^2] = \sum_k (x_k - \alpha_1)^2p_k = E[X^2] - E[X]^2
+\]
+Como $\sigma^2 \geq 0$ siempre, se tiene que
+\[
+E[X^2] \geq E[X]^2
+\]
+
+La \emph{desviación típica de la distribución}, $\sigma$, es la raíz cuadrada de la varianza ($\sigma^2$) y se interpreta como la dispersión de la distribución alrededor de la media.
+
+A veces, se utiliza \emph{coeficiente de varianza de la variable $X$}
+\[
+\frac{\sigma(X)}{E[X]}
+\]
+
+Si la dispersión se calcula a partir de un punto genérico $a$, mediante $E[(X-a)^2]$. Esta se minimiza si calcula alrededor de la media, $a=E[X]$.
+
+\begin{proposition}[Desigualdad de Tchebychev]
+    Cualquiera que sea la distribución de probabilidad de una variable aleatoria $X$, se verifica
+    \[
+    P\{|X-E[X]| > k\sigma\} \leq \frac{1}{k^2}
+    \]
+    para cualquier $k > 0$, o lo que es lo mismo
+    \[
+    P\{|X-E[X]| > c\} \leq \frac{\sigma^2}{c^2}
+    \]
+    para cualquier $c > 0$.
+\end{proposition}
+
+\begin{proposition}[Desigualdad de Markov]
+    \[
+    P\{f(X)>c\} \leq \frac{E[f(X)]}{c}
+    \]
+\end{proposition}
+
+El momento central de tercer orden
+\[
+\mu_3 = \sum_k (x_k-\alpha_1)^3 p_k
+\]
+mide la asimetría de la distribución alrededor de su media. También se usa el \emph{coeficiente de asimetría de la distribución}.
+\[
+\gamma_3 = \frac{\mu_3}{\sigma_3}
+\]
+
+El \emph{coeficiente de apuntalamiento} o \emph{curtosis de la distribución}
+\[
+\gamma_4 = \frac{\mu_4}{\sigma_4} - 3
+\]
+
+\section{Momentos de una distribución conjunta}
+
+Respecto al origen, los momentos de la distribución conjunta con el valor esperado del producto de dos potencias de las variables.
+\[
+\sigma_{r,s}=E[X_1^rX_2^s]
+\]
+
+Respecto al centro de gravedad $(E[X_1],E[X_2])$ de la distribución, debe restarse a cada variable su media.
+\[
+\mu_{r,s} = E[(X_1-E[X_1])^r(X_2-E[X_2])^s]
+\]
+
+El \emph{orden} de uno de estos momentos es el número $r+s$.
+
+El momento más utilizado es el valor esperado del producto de las dos variables o \emph{covarianza} entre ellas
+\[
+\alpha_{1,1} = E[X_1X_2]
+\]
+y, más aún, la \emph{covarianza} entre ellas
+\[
+\Cov(X_1,X_2) = \mu_{1,1} = E[(X_1 - E[X_1])(X_2 - E[X_2])] = E[X_1X_2]-E[X_1]E[X_2]
+\]
+
+Dos variables aleatorias $X_1$ y $X_2$ independientes, tienen covarianza nula. Pero dos variables con covarianza nula, no son independientes.
+
+Otra muy usada es el \emph{coeficiente de correlación}
+\[
+\rho(X_1,X_2) = \frac{\Cov(X_1,X_2)}{\sigma(X_1)\sigma(X_2)}
+\]
+
+Las variables cuyo coeficiente de correlación es nulo se denominan \emph{incorreladas}.
+
+La \emph{matriz de covarianzas} de $X_1$ y $X_2$ es la matriz
+\[
+\Sigma(X_1,X_2) = \begin{pmatrix}
+    \sigma^2(X_1) & \Cov(X_1,X_2) \\
+    \Cov(X_1,X_2) & \sigma^2(X_2)
+\end{pmatrix}
+\]
+
+Es una matriz simétrica semidefinida positiva y con determinante positivo, por lo que
+\[
+\Cov(X_1,X_2)^2 \leq \sigma^2(X_1)\sigma^2(X_2) \qquad -1 \leq \rho(X_1,X_2) \leq 1
+\]
+
+Si $\rho(X_1,X_2) = \pm 1$ es equivalente a que cada una de las variables sea función lineal de la otra.
+
+La mejor previsión de $X_2$, mediante una función lineal de $X_1$, es la \emph{recta de regresión de $X_2$ sobre $X_1$}
+\[
+x_2 = a^*(x_1 - E[X_1]) + E[X_2] \qquad a^* = \frac{\Cov(X_1,X_2)}{\sigma^2(X_1)}
+\]
+
+Siendo la \emph{varianza residual de $X_2$}, después de hacer la regresión sobre $X_1$.
+\[
+\sigma^2(X_2)(1 - \rho^2(X_1,X_2))
+\]
+
+Si $X_1,X_2,\ldots,X_n$ son variables aleatorias independientes, se verifica
+\[
+\sigma^2(X_1 + X_2 + \cdots + X_n) = \sigma^2(X_1) + \sigma^2(X_2) + \cdots + \sigma^2(X_n)
+\]
+
+\section{Otros indicadores de posición y dispersión}
+
+\subsection{Indicadores de posición}
+
+\begin{description}
+    \item[Moda] La \emph{moda} de una distribución que asigna probabilidades $p_1,p_2,\ldots$ a los puntos $x_1,x_2,\ldots$ es el valor $x_k$ para el cual $p_k$ es máximo.
+    \item[Mediana]  La \emph{mediana} de una distribución es aquel valor $M$ que deja probabilidad $\frac{1}{2}$ tanto por debajo como por encima de él.
+    \[P\{X \leq M\} \geq \frac{1}{2} \qquad P\{X \geq M\} \geq \frac{1}{2}\]
+    Al igual que la media es el valor $a$ que minimiza $E[(X-a)^2]$, la mediana es el valor que minimiza.
+    \[
+    E[|X-a|]
+    \]
+\end{description}
+
+\subsection{Indicadores de dispersión}
+
+\begin{description}
+    \item[Promedio de las desviaciones absolutas a $a$] Consiste en calcular $E[|X-a|]$ tomando $a$ como $E[X]$ o $M(X)$.
+    \item[Desviación probable] Si $M(X)$ es única se puede calcular la \emph{mediana de las desviaciones absolutas a la mediana}
+    \[M(|X-M(X|)\]
+    Tiene la virtud que si su valor es $D$, entonces el intervalo $[M(X)-D,M(X)+D]$ tiene probabilidad superior a $\frac{1}{2}$. Y si el intervalo es $(M(X)-D,M(X)+D)$ tiene probabilidad inferior a $\frac{1}{2}$.
+    \item[Cuantil de orden $p$] Dado cualquier número $p \in [0,1]$, el menor valor $x_k$ de la variable tal que $P\{X \leq x_k\} \geq p$ se denomina el \emph{cuantil de orden $p$} de la distribución.
+    \[c_p = \min\{x_k | F(x_k) \geq p\}\]
+    $c_{\frac{1}{2}}$ es la mediana. $c_{\frac{1}{4}}$ y $c_{\frac{3}{4}}$ el primer y tercer cuartil. Y el \emph{intervalo intercuartílico} $[c_{\frac{1}{4}}, c_{\frac{3}{4}}]$ tiene probabilidad igual o superior a $\frac{1}{2}$
+\end{description}
+
+\section{Función generatriz}
+
+Si $X$ es una variable aleatoria con valores enteros no negativos, con $P\{X = n\} = p_n$ para cada $n$, se llama función generatriz de $X$ a la función
+\[
+G(z) = E[z^X] = \sum_{n=0}^{\infty} z^np_n
+\]
+
+Si $X_1$ y $X_2$ son dos variables aleatorias independientes, con función generatrices $G_1(z)$ y $G_2(z)$, la función generatriz de la suma $X_1 + X_2$ es el producto $G_1(z)G_2(z)$.

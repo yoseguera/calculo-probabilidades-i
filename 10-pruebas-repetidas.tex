@@ -1,0 +1,44 @@
+\chapter{Pruebas repetidas}
+
+Un \emph{esquema de pruebas repetidas e independientes} es un experimento aleatorio, se repite una vez tras otra, sin que el resultado de cada realización pueda incluir en el resultado de los demás.
+
+Una \emph{sucesión de variables aleatorias de Bernouilli} es una sucesión de variables aleatorias independientes $I_i$, cada una de las cuales vale 1 si se presenta el suceso $A$ en la prueba $i$-ésima y 0 en caso contrario.
+
+\section{La distribución binomial y la aproximación de Poisson}
+
+Si en cada realización de un experimento aleatorio el suceso $A$ tiene probabilidad $p$ de ocurrir, el repetir $n$ veces el experimento, el número de veces que se presenta el suceso $A$ es una variable aleatoria, $X_n$ con función de probabilidad.
+\[
+P\{X_n = k\} = \binom{n}{k} p^kq^{n-k} \qquad \text{para } k=0,1,2,\ldots,n
+\]
+donde $q = 1-p$. Se trata de una \emph{distribución binomial} $B(n,p)$.
+
+Sus momentos más importantes son:
+\[
+E[X_n] = np \qquad \sigma^2(X_n) = np(1-p)
+\]
+
+\begin{theorem}[Teorema de Poisson]
+    Si $n$ tiende a infinito y $p$ tienda a cero, de tal manera que el producto $np$ converge a una constante $\lambda$, se verifica
+    \[
+    \lim \binom{n}{k} p^k q^{n-k} = e^{-\lambda}\frac{\lambda^k}{k!}
+    \]
+    para cada valor fijo de $k$.
+\end{theorem}
+
+\section{La aproximación normal a la distribución binomial}
+
+\begin{theorem}[Teorema de Moivre-Laplace]
+    Cuando $n$ tiende a infinito, si $k$ tiende hacia infinito de manera que
+    \[
+    x_k=\frac{k-np}{\sqrt{npq}}
+    \]
+    se mantiene acotado en valor absoluto por alguna constante $A$, se cumple
+    \[
+    \binom{n}{k}p^k q^{n-k} \sim \frac{1}{\sqrt{2\pi npq}}e^{-\frac{x_k^2}{2}}
+    \]
+    en el sentido de que el cociente entre ambos miembros converge a 1. Más exactamente, se tiene
+    \[
+    \binom{n}{k}p^k q^{n-k} \sim \frac{1}{\sqrt{2\pi npq}}e^{-\frac{x_k^2}{2}}(1+\rho_n)
+    \]
+    donde $\frac{\sqrt{n}}{|\rho_n|}$ esta acotado, a partir de un $n$ en adelante, por una constante que solo depende de $A$ (y de $p$).
+\end{theorem}

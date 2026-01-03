@@ -5,18 +5,38 @@
 % ---------------------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern} % Puedes cambiar por Garamond, Libertinus, etc.
-\usepackage[spanish]{babel}
+%\usepackage{lmodern} % Puedes cambiar por Garamond, Libertinus, etc.
+\usepackage[spanish,es-tabla]{babel}
 \usepackage{microtype} % Mejora tipográfica
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
-\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage[hidelinks]{hyperref}
 
 % ---------------------------------------------------------
-% CONFIGURACIÓN DE PÁGINA Y MÁRGENES
+% Fuentes
 % ---------------------------------------------------------
-\setlrmarginsandblock{3.5cm}{3.5cm}{*}
-\setulmarginsandblock{3cm}{3cm}{*}
+% Palatino for main text and math
+\usepackage[osf,sc]{mathpazo}
+
+% Helvetica for sans serif
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.90]{helvet}
+
+% Bera Mono for monospaced
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.85]{beramono}
+
+% ---------------------------------------------------------
+% CONFIGURACIÓN DE PÁGINA Y MÁRGENES (Tufte)
+% ---------------------------------------------------------
+% Márgenes Tufte: proporción 1:2:1 en horizontal
+% Izquierdo: 2cm, Derecho: 4cm (para notas y anotaciones)
+% Superior e inferior: 2.5cm
+\setlrmarginsandblock{2.5cm}{5cm}{*}
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
 \checkandfixthelayout
 
 % ---------------------------------------------------------
@@ -44,6 +64,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\EP}{\mathbb{P}}
 \renewcommand{\emph}[1]{\textbf{#1}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
@@ -67,7 +88,6 @@
 \DeclareMathOperator{\SP}{sp}
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\GrTr}{gr.trans.}
-\DeclareMathOperator{\Cov}{Cov}
 \newcommand{\grado}{\partial}
 \newcommand{\fix}{\operatorname{Fix}}
 \newcommand{\fixm}{\operatorname{Fix}^-}
@@ -80,7 +100,24 @@
 \renewcommand{\vec}[1]{\overrightarrow{#1}}
 \newcommand{\prodes}[2]{\langle #1,#2 \rangle}
 \newcommand{\norma}[1]{|| #1 ||}
+\newcommand{\anulador}[1]{\prescript{0}{}{#1}}
 
+\DeclareMathOperator{\Cov}{Cov} 
+
+% ----------------------------------------------------
+% CONFIGURACIÓN TEOREMAS
+% ----------------------------------------------------
+\newtheoremstyle{mystyle}%
+  {\topsep}%                   espacio antes
+  {\topsep}%                   espacio después
+  {\itshape}%                  cuerpo
+  {}%                          indentación
+  {\bfseries}%                 encabezado
+  {}%                         puntuación después del encabezado
+  {\newline}%                  espacio después del encabezado (nueva línea)
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ \emph{(#3)}}}% formato personalizado
+
+\theoremstyle{mystyle}
 \newtheorem{definition}{Definici\'{o}n}[chapter]
 \newtheorem{theorem}[definition]{Teorema}
 \newtheorem{proposition}[definition]{Proposici\'{o}n}
@@ -88,6 +125,20 @@
 \newtheorem{lemma}[definition]{Lema}
 \newtheorem{construccion}[definition]{Construcci\'{o}n}
 \newtheorem{algoritmo}[definition]{Algoritmo}
+
+% ---------------------------------------------------------
+% CONFIGURACIÓN DE NOTAS AL PIE COMO NOTAS AL MARGEN
+% ---------------------------------------------------------
+% En el preámbulo
+\newcounter{sidenote}
+\renewcommand{\thesidenote}{\arabic{sidenote}}
+
+\newcommand{\sidenote}[1]{%
+  \refstepcounter{sidenote}%
+  \marginpar{\footnotesize\textsuperscript{\thesidenote}\,#1}%
+  \textsuperscript{\thesidenote}%
+}
+\let\footnote\sidenote
 
 % ---------------------------------------------------------
 % INICIO DEL DOCUMENTO

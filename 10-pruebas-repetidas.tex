@@ -18,7 +18,7 @@ E[X_n] = np \qquad \sigma^2(X_n) = np(1-p)
 \]
 
 \begin{theorem}[Teorema de Poisson]
-    Si $n$ tiende a infinito y $p$ tienda a cero, de tal manera que el producto $np$ converge a una constante $\lambda$, se verifica
+    Si $n$ tiende a infinito y $p$ tienda a cero, de tal manera que el producto $np$ converge a una constante $\lambda=np$, se verifica
     \[
     \lim \binom{n}{k} p^k q^{n-k} = e^{-\lambda}\frac{\lambda^k}{k!}
     \]
@@ -28,7 +28,7 @@ E[X_n] = np \qquad \sigma^2(X_n) = np(1-p)
 \section{La aproximación normal a la distribución binomial}
 
 \begin{theorem}[Teorema de Moivre-Laplace]
-    Cuando $n$ tiende a infinito, si $k$ tiende hacia infinito de manera que
+    Cuando $n$ tiende a infinito, si $k$\footnote{Debe estar en el entorno de $np$.} tiende hacia infinito de manera que
     \[
     x_k=\frac{k-np}{\sqrt{npq}}
     \]

@@ -22,8 +22,7 @@ No tiene ninguna relevancia donde se producen las restricciones, solo cuales son
 
 \(n\) objetos distintos pueden ordenarse en fila de \(n!\) maneras distintas.
 
-Una colección de \(n\) objetos, clasificados en \(k\) grupos de objetos idénticos entre sí, el primero con \(n_1\) objetos, el segundo con
-\(n_2\),\ldots{} se pueden ordenar en fila de 
+Una colección de \(n\) objetos, clasificados en \(k\) grupos de objetos idénticos entre sí, el primero con \(n_1\) objetos, el segundo con \(n_2\ldots\) se pueden ordenar en fila de
 \[
 \frac{n!}{n_1!n_2!\cdots n_k!}
 \] 
@@ -31,10 +30,9 @@ maneras distintas, si no se consideran distintas las ordenaciones en las cuales 
 
 \subsection{Subconjuntos ordenados} 
 
-Hay \[n(n-1)(n-2)\cdots(n-r+1) = \frac{n!}{(n-r)!} = (n)_r\] subconjuntos ordenados posibles de \(r\) elementos, que pueden extraerse de un
-conjunto de \(n\) elementos. También conocidos como \emph{variaciones sin repetición de \(r\) elementos tomados entre \(n\)}.
+Hay \[n(n-1)(n-2)\cdots(n-r+1) = \frac{n!}{(n-r)!} = (n)_r\] subconjuntos ordenados posibles de \(r\) elementos, que pueden extraerse de un conjunto de \(n\) elementos. También conocidos como \emph{variaciones sin repetición\footnote{Un elemento no puede ser elegido varias veces.} de \(r\) elementos tomados entre \(n\)}.
 
-El número de \textbf{variaciones con repetición} de \(r\) elementos tomados entre \(n\) es \(n^r\). 
+El número de \textbf{variaciones con repetición}\footnote{Un elemento puede ser elegido varias veces.} de \(r\) elementos tomados entre \(n\) es \(n^r\). 
 
 \subsection{Subconjuntos} 
 
@@ -48,11 +46,15 @@ La diferencia entre variaciones y subconjuntos es si el orden de aparición de l
 
 \subsection{Repartos} 
 
-Si hay que repartir \(r\) objetos iguales en \(n\) grupos, existen 
+Si hay que repartir \(r\) objetos iguales en \(n\) grupos, siendo posible que haya alguno vacío, existen 
 \[
 \binom{n+r-1}{r}
 \] 
 repartos posibles. 
+
+Si no es posible que haya algún grupo vacío, el número de repartos posibles es
+\[\binom{r-1}{n-1}\] 
+siempre que \(r \geq n\); en caso contrario, el número de repartos posibles es cero.
 
 \section{Identidades combinatorias}
 
@@ -70,9 +72,21 @@ cantidades relacionadas con el cardinal de algún conjunto.
   \binom{x}{r} = \frac{x(x-1)(x-2)\cdots(x-r+1)}{r!}
 \] y si \(r < 0\) \[
   \binom{x}{0} = 1 \qquad \binom{x}{r} = 0
-\] \#\#\#\# Identidad inmediata \[
+\] 
+
+\[
+\sum_{k=0}^\infty (-1)^k \binom{r}{n} \binom{2n-2k}{2r-2k} = \binom{n}{2r}2^{2r}
+\]
+
+\subsection{Identidad inmediata}
+
+\[
   \binom{-x}{r} = (-1)^r\binom{x+r-1}{r}
-\] \#\#\#\# Desarrollo de Taylor Si \(|t|<1\) y para cualquier
+\] 
+
+\subsection{Desarrollo de Taylor} 
+
+Si \(|t|<1\) y para cualquier
 \(x \in \mathbb{R}\) \[
   (1+t)^x=1 + \binom{x}{1}t + \binom{x}{2}t^2 + \cdots + \binom{x}{r}t^r+\cdots
 \] y si \(|b| < |a|\) y cualquier \(x \in \mathbb{R}\) \[
@@ -85,11 +99,13 @@ cantidades relacionadas con el cardinal de algún conjunto.
   (-1)^n\binom{-\frac{1}{2}}{n}=\binom{2n}{n}\frac{1}{2^{2n}}
 \] \[
   \sum_{n=0}^\infty \frac{2n}{n}\frac{t^n}{2^{2n}}=(1-t)^{\frac{-1}{2}}
-\] y si \(n\) es un entero positivo \[
-  \binom{x+y}{n}=\binom{x}{0}\binom{y}{n}+\binom{x}{1}\binom{y}{n-1}+\binom{x}{2}\binom{y}{n-2}+\cdots+\binom{x}{n}\binom{y}{0}
-\] 
+\] y si \(n\) es un entero positivo 
+\begin{align*}
+	  \binom{x+y}{n}&=\binom{x}{0}\binom{y}{n}+\binom{x}{1}\binom{y}{n-1}+\binom{x}{2}\binom{y}{n-2}+\cdots+\binom{x}{n}\binom{y}{0}\\
+	&=\sum_{k=0}^n \binom{x}{k}\binom{y}{n-k}
+\end{align*}
 
-\section{Formula de Stirling} 
+\section{Fórmula de Stirling} 
 \[
   n! = \sqrt{2n}n^{n+\frac{1}{2}}e^{-n}
 \] con más precisión \[

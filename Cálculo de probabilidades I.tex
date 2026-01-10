@@ -152,13 +152,6 @@
 
 % Dedicatoria opcional
 \cleardoublepage
-\thispagestyle{empty}
-\vspace*{5cm}
-\begin{center}
-  \emph{A quien corresponda.}
-\end{center}
-\cleardoublepage
-
 
 \tableofcontents
 
@@ -166,7 +159,7 @@
 \label{el-modelo-matemuxe1tico-de-la-probabilidad}
 
 \section{Espacio muestral y sucesos}
-\label{espacio-muestral-y-sucesos}
+\label{espacio-muest ral-y-sucesos}
 
 Los resultados posibles constituyen un conjunto finito que se denomina \textbf{espacio muestral} del fenómeno aleatorio en cuestos y se designa
 genéricamente por \(\Omega\).
@@ -202,11 +195,12 @@ El espacio de probabilidad finito es el par \((\Omega,P)\).
 
 \begin{itemize}
   \item Si \(A \subset B \subset \Omega\), entonces \(P(A) \leq P(B)\).
-  \item \(P(B) = P(A) + P(B \cap A^c)\) * Si \(A \subset B \subset \Omega\), entonces \(P(B - A) = P(B)- P(A)\). 
+  \item \(P(B) = P(A) + P(B \cap A^c)\).
+  \item Si \(A \subset B \subset \Omega\), entonces \(P(B - A) = P(B \cap A^c) = P(B)- P(A)\). 
   \item Para cualquier \(A \subset \Omega\), \(P(A^c) = 1 - P(A)\). 
   \item \(P(\emptyset) = 0\)
   \item \(P(B) = P(B \cap A) + P(B - A)\)
-  \item \(P(A \cup B) = P(A) + P(B) + P(A \cap B)\). 
+  \item \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\). 
   \item Si \(A_1, A_2,\ldots,A_n\) son sucesos disjuntos dos a dos, es decir que verifiquen \(A_i \cap A_j = \emptyset\) para \(i \neq j\) se cumple
   \[
   P(A_1 \cup A_2 \cup \ldots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n)
@@ -228,7 +222,7 @@ La probabilidad de un suceso \(A\) relativo a un fenómeno aleatorio es
 \] 
 supuesto que todos los casos posibles son igualmente probables.
 
-\chapter{Las formulas de inclusión y exclusión}
+\chapter{Las fórmulas de inclusión y exclusión}
 
 \subsection{Probabilidad de una unión de sucesos}
 
@@ -241,9 +235,15 @@ donde
   S_k = \sum_{1 \leq i_1 < i_2 < \cdots < i_k < n}P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k})
 \] 
 
+Por ejemplo
+\begin{align*}
+P(A_1 \cup A_2 \cup A_3) &= P(A_1) + P(A_2) + P(A_3) \\&- P(A_1 \cap A_2) - P(A_1 \cap A_3) - P(A_2 \cap A_3) \\&+ P(A_1 \cap A_2 \cap A_3)  
+\end{align*}
+
+
 \subsection{Probabilidad de que se realicen m sucesos }
 
-En un espacio de probabilidad, si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera, la probabilidad \(P_{[m]}\) de que ocurran exactamente \(m\) de ellos, es
+En un espacio de probabilidad, si \(A_1, A_2,\ldots,A_n\) son sucesos cualesquiera, la probabilidad \(P_{[m]}\) de que ocurran exactamente \(m\) de ellos, es\footnote{$S_0 = 1$}
 \[
   P_{[m]} = S_m - \binom{m+1}{m}S_{m+1} +\binom{m+2}{m}S_{m+2} - \cdots + (-1)^{n-m}\binom{n}{m}S_{n}
 \]
@@ -311,7 +311,9 @@ P([x, x + \bigtriangleup x]) \simeq f(x)\bigtriangleup x
 Si \(A\) y \(B\) son sucesos de un cierto de espacio de probabilidad y se cumple que \(P(B) > 0\), la probabilidad de \(A\) condicionada a
 \(B\) es 
 \[
-P(A|B) = \frac{P(A \cap B)}{P(B)}\] \[P(A)P(B|A)=P(B)P(A|B)
+P(A|B) = \frac{P(A \cap B)}{P(B)}\] 
+\[
+P(A)P(B|A)=P(B)P(A|B)=P(A \cap B)
 \] 
 
 \section{Propiedades} 
@@ -360,6 +362,22 @@ para cualquier suceso \(A \subset \Omega\).
   \]  
 \end{proposition}
 
+\section{Aplicaciones de la probabilidad condicionada}
+
+\subsection{Probabilidad con remplazo}
+
+Probabilidad de obtener \(k\) bolas blancas en \(n\) extracciones con reemplazo de una urna con proporción \(p\) de bolas blancas.
+\[
+P\{X=k\}=\binom{n}{k} p^k (1-p)^{n-k}
+\]
+
+\subsection{Probabilidad sin remplazo}
+
+Probabilidad de obtener \(k\) bolas blancas en \(n\) extracciones sin reemplazo de una urna con proporción \(p\) de bolas blancas.
+\[
+P\{X=k\}=\frac{\binom{Np}{k} \binom{N(1-p)}{n-k}}{\binom{Np}{n}}
+\]
+
 \section{El método recurrente} 
 
 Una situación en la que obtener la probabilidad de un suceso dependa exclusivamente de lo ocurrido en la etapa anterior se llama situación \textbf{markoviana}.
@@ -392,7 +410,7 @@ deben cumplir una condición y el resto no esta sometido a ninguna limitación.
 
 \section{Independencia de varios sucesos} 
 
-En un espacio de probabilidad, tres sucesos \(A_1, A_2, A_3\) son independientes si se cumplen las condiciones
+En un espacio de probabilidad, tres sucesos \(A_1, A_2, A_3\) son independientes si se cumplen las cuatro condiciones:
 \begin{enumerate}
   \item \(P(A_1 \cap A_2) = P(A_1)P(A_2)\)
   \item \(P(A_1 \cap A_3) = P(A_1)P(A_3)\) 
@@ -424,7 +442,7 @@ Dos sucesos \(A\) y \(B\) pueden ser independientes, per no ser condicionalmente
 
 \section{El concepto de variable aleatoria}
 
-En un espacio de probabilidad discreto \((\Omega,P)\), se denomina \emph{variable aleatoria}, a cualquier función
+En un espacio de \emph{probabilidad discreto} \((\Omega,P)\), se denomina \emph{variable aleatoria}, a cualquier función
 \[
 X: \Omega \rightarrow \R
 \]
@@ -433,7 +451,7 @@ Si la variable aleatoria \(X\) estuviese definida en un espacio muestral no nume
 
 \section{Distribución de una variable aleatoria}
 
-La colección de probabilidades \(=\{X \in B\}\), correspondientes a cada subconjunto \(B\) de $\R$, se denomina la \emph{distribución de la variable aleatoria $X$}.
+La colección de probabilidades \(P\{X \in B\}\), correspondientes a cada subconjunto \(B\) de $\R$, se denomina la \emph{distribución de la variable aleatoria $X$}.
 
 Una variable aleatoria $X$ es \emph{discreta} si toma a lo sumo un número numerable de valores
 \[
@@ -445,20 +463,20 @@ p_k =  P\{X = x_k\}
 \]
 se denomina \emph{función de probabilidad de $X$}.
 
-Naturalmente debe ser
+Naturalmente, debe ser
 \[
 \sum_{k=1}^\infty p_k = 1
 \]
 
 Una urna en la que se introducen tarjetas que llevan anotado uno de los números $x_i$. Si la proporción de tarjetas con el número $x_i$ es $p_i$, el número obtenido al elegir una tarjeta al azar, es una variable aleatoria con la función de probabilidad requerida\footnote{El mecanismo tropezará con dificultades si alguna de las $p_i$ es irracional, por la imposibilidad de que, con un número finito de tarjetas, la proporción de algún subconjunto de ellas sea irracional. Una alternativa es dividir $\Omega = [0,1]$ en segmentos de longitud $p_1,p_2,\ldots,p_i,\ldots$ y escoger un punto con distribución uniforme en $[0,1]$.}.
 
-\section{Variables aleatorias simultaneas}
+\section{Variables aleatorias simultáneas}
 
-La igualdad entre variables aleatorias exige que ambas estén definidas en el mismo espacio de probabilidad; en cambio la igualdad de sus distribuciones puede ocurrir entre variables definidas en espacios distintos.
+La igualdad entre variables aleatorias exige que ambas estén definidas en el mismo espacio de probabilidad; en cambio, la igualdad de sus distribuciones puede ocurrir entre variables definidas en espacios distintos.
 
-Dos variables aleatorias tendrán una \emph{relación funcional} cuando una vez elegegida una de ellas, la segunda queda determinada sin ninguna aleatoriedad.
+Dos variables aleatorias tendrán una \emph{relación funcional} cuando una vez elegida una de ellas, la segunda queda determinada sin ninguna aleatoriedad.
 
-Si \(X_1, X_2\) son variables aleatorias discretas definidas en el mismo espacio de probabilidad, la distribución conjunta de \((X_1,X_2)\) es la función que asigna a cada $B \subset \R^2$ la probabilidad
+Si \(X_1, X_2\) son variables aleatorias discretas definidas en el mismo espacio de probabilidad, la distribución conjunta de \((X_1, X_2)\) es la función que asigna a cada $B \subset \R^2$ la probabilidad
 \[
 P\{(X_1,X_2) \in B \}
 \]
@@ -472,7 +490,7 @@ a cada par $(x_1,x_2)$ de valores posibles de $(X_1,X_2)$ (que siempre será un 
 Las funciones de probabilidad $P\{X_1 = x_2\}$ y $P\{X_2 = x_2\}$ se denominan \emph{funciones de probabilidad marginales} de $X_2$ y $X_2$ respectivamente. Claramente
 \begin{align*}
   P\{X_1 = x_1\} &= \sum_{x_2 \in X_2(\Omega)} P\{X_1 = x_1, X_2 = x_2\} \\
-  P\{X_1 = x_1\} &= \sum_{x_1 \in X_1(\Omega)} P\{X_1 = x_1, X_2 = x_2\}
+  P\{X_2 = x_2\} &= \sum_{x_1 \in X_1(\Omega)} P\{X_1 = x_1, X_2 = x_2\}
 \end{align*}
 
 La función de Probabilidad
@@ -502,6 +520,14 @@ cualquiera que sean $x_1,x_2,\ldots,x_r$ dentro de los valores posibles de $X_1,
   \]
   En consecuencia, los sucesos $\{X_1 \in C_1\}, \{X_2 \in C_2\},\ldots,\{X_r \in C_r\}$ son independientes.
 \end{lemma}
+
+\section{Aplicaciones}
+
+\subsection{Rachas en $n$ lanzamientos de monedas}
+
+\[
+P\{X=r\} = \binom{n-1}{r-1}\frac{1}{2^{n-1}}
+\]
 
 \include{08-esperanza-matematica}
 

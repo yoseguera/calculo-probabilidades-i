@@ -74,14 +74,14 @@ El momento central de tercer orden
 \[
 \mu_3 = \sum_k (x_k-\alpha_1)^3 p_k
 \]
-mide la asimetría de la distribución alrededor de su media. También se usa el \emph{coeficiente de asimetría de la distribución}.
+mide la asimetría de la distribución alrededor de su media. También se usa el \emph{coeficiente de asimetría de la distribución}\footnote{Si la distribución es simétrica vale 0.}.
 \[
-\gamma_3 = \frac{\mu_3}{\sigma_3}
+\gamma_3 = \frac{\mu_3}{\sigma^3}
 \]
 
 El \emph{coeficiente de apuntalamiento} o \emph{curtosis de la distribución}
 \[
-\gamma_4 = \frac{\mu_4}{\sigma_4} - 3
+\gamma_4 = \frac{\mu_4}{\sigma^4} - 3
 \]
 
 \section{Momentos de una distribución conjunta}
@@ -146,6 +146,11 @@ Si $X_1,X_2,\ldots,X_n$ son variables aleatorias independientes, se verifica
 \sigma^2(X_1 + X_2 + \cdots + X_n) = \sigma^2(X_1) + \sigma^2(X_2) + \cdots + \sigma^2(X_n)
 \]
 
+La varianza residual de la suma de varias variables aleatorias es
+\[
+\sigma^2(X_1 + X_2) = \sigma^2(X_1) + \sigma^2(X_2) + 2\Cov(X_1,X_2)
+\]
+
 \section{Otros indicadores de posición y dispersión}
 
 \subsection{Indicadores de posición}
@@ -179,4 +184,12 @@ Si $X$ es una variable aleatoria con valores enteros no negativos, con $P\{X = n
 G(z) = E[z^X] = \sum_{n=0}^{\infty} z^np_n
 \]
 
-Si $X_1$ y $X_2$ son dos variables aleatorias independientes, con función generatrices $G_1(z)$ y $G_2(z)$, la función generatriz de la suma $X_1 + X_2$ es el producto $G_1(z)G_2(z)$.
+Si $X_1$ y $X_2$ son dos variables aleatorias independientes, con funciones generatrices $G_1(z)$ y $G_2(z)$, la función generatriz de la suma $X_1 + X_2$ es el producto $G_1(z)G_2(z)$.
+
+\begin{align*}
+    E[X] &= G'(1) \\
+    E[X^2] &= G''(1) + G'(1) \\
+    \sigma^2(X) &= G''(1) + G'(1) - G'(1)^2 \\
+    E[X^3] &= G'''(1) + 3G''(1) + G'(1) \\
+    X^2& = \sum x_iI_i - \sum x_ix_jI_iI_j
+\end{align*}
